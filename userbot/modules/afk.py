@@ -28,7 +28,7 @@ AFKSTR = [
     "`#AFK\n Saya Sedang OFFLINE\n Jangan Ganggu Saya !!!!!`",
     "`#AFK\n Maaf Boss Saya Sedang ANJING!!`",
 ]
-
+5
 
 global USER_AFK  # pylint:disable=E0602
 global afk_time  # pylint:disable=E0602
@@ -61,14 +61,14 @@ async def set_afk(afk_e):
     afk_start = start_1.replace(microsecond=0)
     if string:
         AFKREASON = string
-        await afk_e.edit(f"**AFK!**\nSaya Offline Dulu Guys...\
+        await afk_e.edit(f"**AFK!**\nAkun saya tutup sementara...\
         \nKarena: `{string}`")
     else:
-        await afk_e.edit("**AFK!**\nSaya Offline Dulu Guys...")
+        await afk_e.edit("**AFK!**\nAkun saya tutup sementara...")
     if user.last_name:
-        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
+        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ AKUN DI NONAKTIFKAN ]"))
     else:
-        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
+        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ AKUN DI NONAKTIFKAN ]"))
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nKamu Sekarang AFK!")
     ISAFK = True
@@ -97,7 +97,7 @@ async def type_afk_is_not_true(notafk):
     afk_end = back_alive.replace(microsecond=0)
     if ISAFK:
         ISAFK = False
-        msg = await notafk.respond("**OK Saya Kembali....**")
+        msg = await notafk.respond("**Akun Lord diaktifkan,mode mengirim pesan diaktifkan....**")
         time.sleep(3)
         await msg.delete()
         await notafk.client(UpdateProfileRequest(first_name=user.first_name, last_name=last1))
@@ -165,7 +165,7 @@ async def mention_afk(mention):
                 afk_since = f"`{int(seconds)}dtk`"
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"Saya **OFFLINE** Sekarang \nKarena: **{AFKREASON}** \
+                    await mention.reply(f"lord sedang **MENONAKTIFKAN** akun \nKarena: **{AFKREASON}** \
                         \nSejak **{afk_since}** Yg Lalu.")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
@@ -174,7 +174,7 @@ async def mention_afk(mention):
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"Saya **OFFLINE** Sekarang \nKarena: **{AFKREASON}** \
+                        await mention.reply(f"lord sedang **MENONAKTIFKAN** akun \nKarena: **{AFKREASON}** \
                         \nSejak **{afk_since}** Yg Lalu.")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
